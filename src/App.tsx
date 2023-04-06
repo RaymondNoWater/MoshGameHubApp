@@ -24,7 +24,10 @@ function App() {
       </GridItem>
       <Show above="lg">
         <GridItem marginX={5} area="aside">
-          <GenreSideBar onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreSideBar
+            selectedGenre={selectedGenre}
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">
