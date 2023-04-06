@@ -1,11 +1,11 @@
 import useData from "./useData";
 
-interface Genres {
+export interface Genre {
   id: number;
   name: string;
   image_background: string;
 }
 
-const useGeneres = () => useData<Genres>("/genres");
+const useGeneres = () => useData<Genre>("/genres");
 
 export default useGeneres;
