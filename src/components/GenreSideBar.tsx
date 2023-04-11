@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -24,27 +25,35 @@ export default function GenreSideBar({ onSelectGenre, selectedGenre }: Props) {
   if (error) return null;
 
   return (
-    <List>
-      {isLoading && skeletons.map((s) => <GenreSelectSkeletons key={s} />)}
-      {genres.map((g) => (
-        <ListItem key={g.id} paddingY={"5px"}>
-          <HStack>
-            <Image
-              onClick={() => onSelectGenre(g)}
-              boxSize="32px"
-              borderRadius={8}
-              src={getCroppedImageUrl(g.image_background)}
-            />
-            <Button
-              fontWeight={g.id === selectedGenre?.id ? "bold" : "normal"}
-              variant={"link"}
-              fontSize={"lg"}
-              onClick={() => onSelectGenre(g)}>
-              {g.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading marginBottom={3} fontSize={"3xl"}>
+        Genres
+      </Heading>
+      <List>
+        {isLoading && skeletons.map((s) => <GenreSelectSkeletons key={s} />)}
+        {genres.map((g) => (
+          <ListItem key={g.id} paddingY={"5px"}>
+            <HStack>
+              <Image
+                objectFit={"cover"}
+                onClick={() => onSelectGenre(g)}
+                boxSize="32px"
+                borderRadius={8}
+                src={getCroppedImageUrl(g.image_background)}
+              />
+              <Button
+                textAlign={"left"}
+                whiteSpace={"normal"}
+                fontWeight={g.id === selectedGenre?.id ? "bold" : "normal"}
+                variant={"link"}
+                fontSize={"lg"}
+                onClick={() => onSelectGenre(g)}>
+                {g.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 }
